@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="es-ES" datatype="plaintext" original="ModulesPstranslationfinderAdmin">
+    <body>
+      <trans-unit id="1">
+        <source>Translation Finder</source>
+        <target>Translation Finder</target>
+      </trans-unit>
+      <trans-unit id="2">
+        <source>Buscar traduccion</source>
+        <target>Buscar traducción</target>
+      </trans-unit>
+      <trans-unit id="3">
+        <source>Apartados</source>
+        <target>Apartados</target>
+      </trans-unit>
+      <trans-unit id="4">
+        <source>Buscar</source>
+        <target>Buscar</target>
+      </trans-unit>
+      <trans-unit id="5">
+        <source>Limpiar caché</source>
+        <target>Limpiar caché</target>
+      </trans-unit>
+      <trans-unit id="6">
+        <source>Apartado</source>
+        <target>Apartado</target>
+      </trans-unit>
+      <trans-unit id="7">
+        <source>Texto original</source>
+        <target>Texto original</target>
+      </trans-unit>
+      <trans-unit id="8">
+        <source>Traduccion actual</source>
+        <target>Traducción actual</target>
+      </trans-unit>
+      <trans-unit id="9">
+        <source>Guardar</source>
+        <target>Guardar</target>
+      </trans-unit>
+      <trans-unit id="10">
+        <source>Configuracion guardada.</source>
+        <target>Configuración guardada.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

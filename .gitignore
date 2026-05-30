@@ -1,0 +1,18 @@
+# Dependencias / artefactos generados
+.claude/
+settings.local.json
+
+# Backups y logs generados en runtime (se mantiene el index.php de cada carpeta)
+cache/backups/*
+!cache/backups/index.php
+logs/*
+!logs/index.php
+*.log
+
+# Sistema operativo / editor
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.idea/
+.vscode/

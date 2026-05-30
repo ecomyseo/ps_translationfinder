@@ -1,0 +1,174 @@
+/**
+ * Translation Finder
+ *
+ * @author    Ecom Experts <ecomyseo@gmail.com>
+ * @copyright 2026 Ecom Experts
+ * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
+ */
+#ps-tf-app .ps-tf-layout {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+#ps-tf-app .ps-tf-sidebar {
+  flex: 0 0 220px;
+  background: #fff;
+  border: 1px solid #e0e6ed;
+  border-radius: 4px;
+  padding: 14px;
+}
+
+#ps-tf-app .ps-tf-sidebar h3 {
+  margin-top: 0;
+  font-size: 15px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
+}
+
+#ps-tf-app .ps-tf-cats {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#ps-tf-app .ps-tf-cats li {
+  margin: 0 0 4px 0;
+}
+
+#ps-tf-app .ps-tf-cat {
+  display: block;
+  padding: 8px 10px;
+  border-radius: 4px;
+  color: #363a41;
+  text-decoration: none;
+}
+
+#ps-tf-app .ps-tf-cat:hover {
+  background: #f1f4f9;
+}
+
+#ps-tf-app .ps-tf-cat.active {
+  background: #25b9d7;
+  color: #fff;
+  font-weight: bold;
+}
+
+#ps-tf-app .ps-tf-help {
+  margin-top: 14px;
+  font-size: 12px;
+  color: #7d8da1;
+}
+
+#ps-tf-app .ps-tf-main {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+#ps-tf-app .ps-tf-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+#ps-tf-app .ps-tf-row #ps-tf-term {
+  flex: 1 1 320px;
+}
+
+#ps-tf-app .ps-tf-row #ps-tf-lang {
+  flex: 0 0 200px;
+}
+
+#ps-tf-app .ps-tf-status {
+  margin-top: 10px;
+  min-height: 18px;
+  font-size: 13px;
+}
+
+#ps-tf-app .ps-tf-results {
+  table-layout: fixed;
+  width: 100%;
+}
+
+#ps-tf-app .ps-tf-results th:nth-child(1) { width: 100px; }
+#ps-tf-app .ps-tf-results th:nth-child(2) { width: 22%; }
+#ps-tf-app .ps-tf-results th:nth-child(3) { width: 22%; }
+#ps-tf-app .ps-tf-results th:nth-child(4) { width: auto; }
+#ps-tf-app .ps-tf-results th:last-child { width: 90px; }
+
+#ps-tf-app .ps-tf-source {
+  word-break: break-word;
+  white-space: pre-wrap;
+  font-size: 13px;
+}
+
+#ps-tf-app .ps-tf-results code {
+  word-break: break-all;
+}
+
+#ps-tf-app .ps-tf-input {
+  font-size: 13px;
+  min-height: 110px;
+  width: 100%;
+  resize: vertical;
+  font-family: Menlo, Consolas, monospace;
+  line-height: 1.4;
+}
+
+#ps-tf-app .ps-tf-rte {
+  min-height: 140px;
+  height: auto;
+  overflow: auto;
+  background: #fff;
+  border: 1px solid #ccd0d6;
+  border-radius: 3px;
+  padding: 8px;
+  font-size: 13px;
+}
+
+#ps-tf-app .ps-tf-rte:focus {
+  outline: none;
+  border-color: #25b9d7;
+}
+
+#ps-tf-app .ps-tf-htmlbtn {
+  margin-bottom: 4px;
+}
+
+#ps-tf-app .ps-tf-backup-lbl {
+  font-weight: normal;
+  margin: 0 0 0 4px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+#ps-tf-app .ps-tf-backup-lbl input {
+  margin-right: 4px;
+  vertical-align: middle;
+}
+
+#ps-tf-app .ps-tf-history-panel h3 {
+  margin-top: 0;
+}
+
+#ps-tf-app .ps-tf-history th:last-child {
+  width: 150px;
+}
+
+#ps-tf-app .ps-tf-syntax {
+  list-style: none;
+  margin: 6px 0 0 0;
+  padding: 0;
+  font-size: 12px;
+}
+
+#ps-tf-app .ps-tf-syntax li {
+  margin-bottom: 3px;
+}
+
+#ps-tf-app .ps-tf-syntax code {
+  background: #eef3f7;
+  padding: 1px 4px;
+  border-radius: 3px;
+}
