@@ -316,7 +316,16 @@ class AdminPsTranslationfinderController extends ModuleAdminController
             header('Content-Type: application/json; charset=utf-8');
         }
         $flags = JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE;
-        $this->ajaxDie(json_encode($data, $flags));
+        $jsonResponse = json_encode($data, $flags);
+        
+        // FIX PRESTASHOP 8.x / 9.x:
+        // El método ajaxDie() fue eliminado del AdminControllerCore en las versiones 
+        // modernas de PrestaShop (Symfony). Usamos die() como fallback seguro.
+        if (method_exists($this, 'ajaxDie')) {
+            $this->ajaxDie($jsonResponse);
+        } else {
+            die($jsonResponse);
+        }
     }
 
     /**
