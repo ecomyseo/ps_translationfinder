@@ -263,26 +263,58 @@ class TranslationSaver
             return ['success' => false, 'message' => 'El fichero legacy no tiene permisos de escritura: ' . $rel];
         }
 
-        global $_MODULE;
-        $_MODULE = [];
-        include $file;
-        if (!isset($_MODULE) || !is_array($_MODULE) || !array_key_exists($hash, $_MODULE)) {
+        // Se parsea el fichero legacy sin ejecutarlo (sin include) para evitar
+        // cualquier ejecucion de codigo desde el directorio de traducciones.
+        $catalog = $this->parseLegacyFile($file);
+        if (!array_key_exists($hash, $catalog)) {
             return ['success' => false, 'message' => 'No se encontro la clave en el fichero legacy.'];
         }
 
         $this->backupFile($file);
-        $_MODULE[$hash] = $value;
+        $catalog[$hash] = $value;
 
-        $out = "<?php\n\nglobal \$_MODULE;\n\$_MODULE = array();\n";
-        foreach ($_MODULE as $k => $v) {
-            $out .= "\$_MODULE['" . str_replace("'", "\\'", $k) . "'] = '" . str_replace("'", "\\'", $v) . "';\n";
-        }
+        // var_export genera literales PHP seguros (escapa backslashes y comillas),
+        // evitando inyeccion de codigo por valores con caracteres especiales.
+        $out = "<?php\n\nglobal \$_MODULE;\n\$_MODULE = " . var_export($catalog, true) . ";\n";
 
         if (file_put_contents($file, $out) === false) {
             return ['success' => false, 'message' => 'No se pudo escribir el fichero legacy.'];
         }
 
         return ['success' => true, 'message' => 'Traduccion legacy actualizada (backup creado).'];
+    }
+
+    /**
+     * Parsea un fichero legacy de traduccion (.php con array $_MODULE) SIN ejecutarlo.
+     * Extrae las asignaciones $_MODULE['hash'] = 'valor'; mediante expresion regular,
+     * evitando include() y por tanto cualquier ejecucion de codigo arbitrario.
+     *
+     * @param string $file Ruta absoluta y ya validada del fichero legacy.
+     *
+     * @return array Mapa hash => valor (cadenas sin desescapar destinadas a re-escritura).
+     */
+    protected function parseLegacyFile($file)
+    {
+        $catalog = [];
+        $code = (string) file_get_contents($file);
+        if ($code === '') {
+            return $catalog;
+        }
+
+        // Captura: $_MODULE['clave'] = 'valor';  (admite comillas simples o dobles)
+        $pattern = '/\$_MODULE\s*\[\s*([\'"])(.*?)\1\s*\]\s*=\s*([\'"])(.*?)\3\s*;/s';
+        if (preg_match_all($pattern, $code, $matches, PREG_SET_ORDER)) {
+            foreach ($matches as $m) {
+                $key = $m[2];
+                $rawValue = $m[4];
+                // Desescapa los literales PHP de forma controlada (solo \\ y la comilla usada).
+                $quote = $m[3];
+                $value = strtr($rawValue, ['\\' . $quote => $quote, '\\\\' => '\\']);
+                $catalog[$key] = $value;
+            }
+        }
+
+        return $catalog;
     }
 
     /**
